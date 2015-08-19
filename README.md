@@ -12,10 +12,6 @@ A Redis Web Manager for debug && statistics  real time based on Tornado
 * 统计目前KEY占用的内存，方便容量预估
 * 更多功能...
 
-
-* 邮件(cookcode#126.com, 把#换成@)
-* weibo:(http://weibo.com/titanjf)
-
 ##感激
 感谢以下的项目,排名不分先后
 
@@ -27,5 +23,7 @@ A Redis Web Manager for debug && statistics  real time based on Tornado
 ```javascript
   var ihubo = {
     nickName  : "titan",
+    email: "cookcode#126.com",
+    weibo: "http://weibo.com/titanjf",
   }
 ```

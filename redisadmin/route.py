@@ -5,7 +5,7 @@ Router
 """
 __author__ = 'v-tanjingfeng'
 
-from redisadmin.monitor.Handlers import BaseStaticFileHandler
+from handlers.monitor.Handlers import BaseStaticFileHandler
 
 
 handlers = [

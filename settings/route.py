@@ -5,9 +5,10 @@ Router
 """
 __author__ = 'v-tanjingfeng'
 
-from handlers.monitor.Handlers import BaseStaticFileHandler
+from handlers.monitor.Handlers import MonitorHandler, DebugHandler
 
 
 handlers = [
-    (r"/", BaseStaticFileHandler)
+    (r"/monitor", MonitorHandler),
+    (r"/debug", DebugHandler),
 ]

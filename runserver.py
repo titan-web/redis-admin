@@ -15,7 +15,7 @@ from settings.route import handlers
 from settings.setting import settings
 
 define("port", default=8888, help="run on the given port", type=int)
-define("debug", default=0, help="debug mode", type=int)
+define("debug", default=True, help="debug mode", type=int)
 
 
 def main():

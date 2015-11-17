@@ -5,7 +5,7 @@ Router
 """
 __author__ = 'v-tanjingfeng'
 
-from handlers.monitor.Handlers import MonitorHandler, DebugHandler
+from handlers.monitor.handlers import MonitorHandler, DebugHandler
 
 
 handlers = [

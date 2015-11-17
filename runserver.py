@@ -14,7 +14,7 @@ from tornado.options import define, options
 from settings.route import handlers
 from settings.setting import settings
 
-define("port", default=8888, help="run on the given port", type=int)
+define("port", default=9000, help="run on the given port", type=int)
 define("debug", default=True, help="debug mode", type=int)
 
 

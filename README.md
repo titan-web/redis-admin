@@ -17,8 +17,8 @@ A Redis Web Manager for debug && statistics  real time based on Tornado
 
 ##关于作者
 
-```javascript
-  var cookcode = {
+```
+  cookcode = {
     nickName  : "titan",
     email: "cookcode#126.com",
     weibo: "http://weibo.com/titanjf",

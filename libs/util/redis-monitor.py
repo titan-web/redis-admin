@@ -1,12 +1,26 @@
 #! /usr/bin/env python
 
+"""Monitor Redis.
+
+Usage:
+  redis-monitor.py [--duration=<duration>] [--quiet]
+  redis-monitor.py (-h | --help)
+  redis-monitor.py --version
+
+Options:
+  -h --help                Show this screen.
+  --version                Show version.
+  --duration=<duration>    Duration to run the monitor command (in seconds)[default: 60].
+
+"""
+
 from threading import Timer
 import redis
 import datetime
 import threading
 import traceback
-import argparse
 import time
+from docopt import docopt
 
 
 def get_redis_servers():
@@ -201,21 +215,6 @@ class InfoThread(threading.Thread):
                 except:
                     peak_memory = used_memory
 
-                # databases=[]
-                # for key in sorted(redis_info.keys()):
-                #     if key.startswith("db"):
-                #         database = redis_info[key]
-                #         database['name']=key
-                #         databases.append(database)
-
-                # expires=0
-                # persists=0
-                # for database in databases:
-                #     expires+=database.get("expires")
-                #     persists+=database.get("keys")-database.get("expires")
-
-                # stats_provider.SaveKeysInfo(self.id, current_time, expires, persists)
-
                 time.sleep(1)
 
             except Exception, e:
@@ -228,9 +227,10 @@ class InfoThread(threading.Thread):
 
 class RedisMonitor(object):
 
-    def __init__(self):
+    def __init__(self, quiet):
         self.threads = []
         self.active = True
+        self.quiet = quiet
 
     def run(self, duration):
         """Monitors all redis servers defined in the config for a certain number
@@ -268,7 +268,7 @@ class RedisMonitor(object):
     def stop(self):
         """Stops the monitor and all associated threads.
         """
-        if not args.quiet:
+        if not self.quiet:
             print "shutting down..."
         for t in self.threads:
                 t.stop()
@@ -276,16 +276,8 @@ class RedisMonitor(object):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Monitor redis.')
-    parser.add_argument('--duration',
-                        type=int,
-                        help="duration to run the monitor command (in seconds)",
-                        required=True)
-    parser.add_argument('--quiet',
-                        help="do  not write anything to standard output",
-                        required=False,
-                        action='store_true')
-    args = parser.parse_args()
-    duration = args.duration
-    monitor = RedisMonitor()
+    arguments = docopt(__doc__, version='redis Monitor 1.0')
+    duration = int(arguments.get("--duration", 0))
+    quiet = arguments.get("--quiet", False)
+    monitor = RedisMonitor(quiet)
     monitor.run(duration)
